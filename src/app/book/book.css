@@ -23,6 +23,11 @@ Default left, right, top, bottom margin is set
 body.print p {
     text-align: left;
     page-break-inside: avoid;
+    font-size: 11pt;
+}
+body.print figure,
+body.print .text-content-graphic {
+    text-align: left;
 }
 
 /*
@@ -42,11 +47,33 @@ body.print {
     counter-reset: page;
 }
 
-.print .book-page .text-content::after,
+.print .book-page .page-heading {
+    width: 100%;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    margin-bottom: 20px;
+}
+.print .book-page .page-heading .heading-title{
+    float: left;
+}
+
+.print .book-page .page-number::after {
+    counter-increment: page;
+    content: counter(page);
+    float: right;
+}
+
+.print .book-page .text-content.challenges {
+    height: unset;
+    min-height: unset;
+}
+
+/*.print .book-page .text-content::after,
 .print .book-page .coloring-content::after {
     counter-increment: page;
     content: counter(page);
-}
+}*/
  /* Make sure the pae is at least so long so that page number does not come up too high */
 
 .print .book-page .text-content,
@@ -70,8 +97,17 @@ patterns with order-4 rotations can be better seen.
 Note: frickin firefox blows up the width so I am using smaller width
 for many wallpaper patterns;
 */
-.print .book-page .text-content,
-.print .book-page .coloring-content,
+
+/* consolidated version only: */
+.print .book-page {
+    page-break-inside: avoid;
+}
+
+/* For consolidated version, page break after each page */
+/*.print .book-page .text-content,
+.print .book-page .coloring-content,*/
+.print .book-page,
+
 .print #book-cover,
 .print #road-map, 
 .print #before-info,
@@ -91,12 +127,14 @@ for many wallpaper patterns;
     width: 97%; /* allow the padding - works best with firefox printing */
 }
 .print .book-page .coloring-content {
-    width: 770px;
+    width: 766px;
     padding: 0;
     margin: auto;
 }
-.print .book-page .text-content,
-.print .book-page .coloring-content,
+
+/* commented out for consolidated version: */
+/*.print .book-page .text-content,*/
+/*.print .book-page .coloring-content,*/
 .print #book-cover,
 .print #road-map,
 .print #table-of-contents {       
@@ -124,7 +162,10 @@ for many wallpaper patterns;
 .print .book-page .coloring-content .content-container-wrapper
 {
     position: relative;
-    display: flex;
+
+    /*TODO: modified display: flex;*/
+    /*display: flex;*/
+    
     flex-direction: column;
     justify-content: center;
     height: 100%;
@@ -216,16 +257,30 @@ h1#book-title .title-piece.smaller {
     border-top: 2px solid purple;
 } 
 
-.book-section-title, .book-section-subtitle {
-    display: inline-block;
-    margin: 30px auto;
-    margin-bottom: 50px;
-    padding: 15px 0px;
-    min-width: 50%;
-    font-weight: 400;
-    font-size: 2em;
-    text-transform: uppercase;
+.book-page.consolidated .book-part-title,
+.book-page.consolidated .book-section-title {
+    padding-left: 0;
+    width: 100%;
+    text-align: left;
 }
+
+.book-page.consolidated .book-section-title,
+.book-page.consolidated .book-part-title {
+    text-transform: uppercase;
+    border-bottom: none;
+}
+.book-page.consolidated .book-part-title {
+    text-decoration: underline;
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: 70px;
+}
+.book-page.consolidated .book-section-title {
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
 
 /*
 move from one book-page to the next with animation:

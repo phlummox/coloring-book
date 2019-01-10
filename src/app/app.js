@@ -11,7 +11,7 @@ const DISABLE_ANIMATIONS_PARAM = 'disable-animations';
 const PRINT_ROUTE = '/print-book';
 const PRINT_PARAM = 'print';
 // Set a print mode accessible to other JS.
-let PRINT_MODE = false;
+let PRINT_MODE = true; // TODO false;
 
 
 
@@ -122,6 +122,8 @@ angular.module('app', [
         } else if (!!$location.search()[DISABLE_ANIMATIONS_PARAM]) {
             DISABLE_ANIMATIONS = true;
         }
+
+        vm.print = PRINT_MODE;
     }
     
     // handle anchor tags & routeparam changes

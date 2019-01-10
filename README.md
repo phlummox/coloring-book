@@ -201,6 +201,11 @@ Can upload images to combine into GIFs here: http://gifmaker.me/
 Share with http://www.coloring-book.co not http://coloring-book.co to avoid redirect
 
 
+### Coloring Workbook
+
+There is a sample of an alternative version of this book, which has a more consolidated structure.  It is in the `coloring-workbook-proposal-sample` branch.
+
+
 ### License
 
 GNU General Public License v3.0
